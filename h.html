@@ -174,6 +174,291 @@ spring.data.mongodb.database=StudentDataDetails*/
 
 
 
+/*
+App.java
+
+package com.springcore2;
+import org.springframework.context.ApplicationContext;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        ApplicationContext context=new ClassPathXmlApplicationContext("setterdemo.xml");
+        company ob1=(company) context.getBean("s1");
+        company ob2=(company) context.getBean("s2");
+       
+        System.out.println("id="+ob1.companyId);
+        System.out.println("name="+ob1.companyAddress);
+        System.out.println("id="+ob2.companyId);
+        System.out.println("name="+ob2.companyAddress);
+
+    }
+}
+
+
+
+
+Company.java
+
+
+
+package com.springcore2;
+
+public class company {
+	public int companyId;
+
+	public String companyAddress;
+
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getCompanyAddress() {
+		return companyAddress;
+	}
+
+	public void setCompanyAddress(String companyAddress) {
+		this.companyAddress = companyAddress;
+	}
+	
+}
+
+
+
+
+
+setterdemo.xml
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+xmlns:context="http://www.springframework.org/schema/context"
+
+xmlns:p="http://www.springframework.org/schema/p"
+
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+http://www.springframework.org/schema/beans/spring-beans.xsd
+
+http://www.springframework.org/schema/context
+
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<bean id="s1" class="com.springcore2.company">
+
+
+<property name="companyId" value="100"/>
+<property name="companyAddress" value="bangalore"/>
+
+</bean>
+
+<bean id="s2" class="com.springcore2.company">
+
+<property name="companyId" value="1000"/>
+<property name="companyAddress" value="Mysore"/>
+
+</bean>
+
+</beans>
+
+
+
+
+
+pom.xml
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.springcore2</groupId>
+	<artifactId>springcore2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springcore2</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>*/
+
+
+
+
+
+/*
+App.java
+
+package com.springcore3;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+	public static void main(String args[]) {
+		ApplicationContext context=new ClassPathXmlApplicationContext("Bean.xml");
+		HelloWorld objA=(HelloWorld) context.getBean("helloWorld");
+		objA.setMessage("I'm object A");
+		objA.getMessage();
+		
+		HelloWorld objB=(HelloWorld) context.getBean("helloWorld");
+		objB.setMessage("I'm object B");
+		objB.getMessage();
+		
+		HelloWorld objC=(HelloWorld) context.getBean("helloWorld");
+		objC.getMessage();
+	}
+}
+
+
+HelloWorld.java
+
+
+
+
+package com.springcore3;
+
+public class HelloWorld {
+      private String message;
+
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public void getMessage() {
+		System.out.println("your message:"+message);
+		
+	}
+}
+
+
+
+Bean.xml
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+xmlns:context="http://www.springframework.org/schema/context"
+
+xmlns:p="http://www.springframework.org/schema/p"
+
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+http://www.springframework.org/schema/beans/spring-beans.xsd
+
+http://www.springframework.org/schema/context
+
+http://www.springframework.org/schema/co
+ntext/spring-context.xsd">
+
+<bean id="helloWorld" class="com.springcore3.HelloWorld" scope="prototype">
+
+
+</bean>
+
+
+
+</beans>
+
+
+
+pom.xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.springcore3</groupId>
+	<artifactId>springcore3</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springcore3</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+*/
+
+
+
+
 
 
 
